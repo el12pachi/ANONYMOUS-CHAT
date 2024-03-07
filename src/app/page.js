@@ -1,21 +1,54 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { Recived, Send } from "./msg.js"
+import io from 'socket.io-client';
+let socket
+
 export default function Home() {
-  const msg = ["Hola buenas tardes", "Como estas?", "Bien y tu?", "Tambien bien", "Que  haces?", "Nada, tu?  ", "Igual, nada"];
-  
+  const [send, setSend] = useState("");
+  const [msg, setMsg] = useState([]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    socket.emit('send-message', send);
+    setSend("");
+  }
+  //add user with date conect and random numeber or assig id
+  useEffect(() => {
+    socket = io('http://192.168.1.33:5000/');
+
+    socket.on('send-message', (message) => {
+      setMsg(p1 => [...p1, message]);
+    });
+
+    return () => {
+      socket.off();
+    }
+  }, []);
+
   return (
     <>
       <div className="h-screen w-screen bg-[#333333] flex items-center justify-center">
-        <div className="bg-[#3F3F3F] w-[900px] h-[700px] rounded-[50px] overflow-hidden relative">
-          <div className="w-full h-24 bg-[#0D99FF] flex justify-center items-center text-5xl text-white font-bold">CHAT ANONYMOUS</div>
+        <div className="bg-[#3F3F3F] w-[900px] h-screen max-h-[700px] rounded-[50px] overflow-hidden relative">
+          <div className="w-full h-24 bg-[#0D99FF] flex justify-center items-center text-3xl text-white font-bold sm:text-5xl">CHAT ANONYMOUS</div>
           <div className="bg-[#3F3F3F] h-full">
-
+            {msg.map((message, index) => {
+              return (
+                <Recived msg={message} key={index} />
+              )
+            })}
           </div>
           <div className="w-full flex items-center justify-center h-auto absolute bottom-0 p-6  gap-3">
             <input type="text"
-            className="w-full h-12 rounded-[59px] bg-[#D7D7D7] text-2xl p-4 focus:outline-none text-[#333333]"
+              className="w-full h-12 rounded-[59px] bg-[#D7D7D7] text-2xl p-4 focus:outline-none text-[#333333]"
+              value={send}
+              onChange={(e) => setSend(e.target.value)}
             >
             </input>
-            <button 
-            className="w-24 h-12 bg-[#0D99FF] text-white text-2xl font-bold rounded-[59px] hover:"
+            <button
+              className="w-24 h-12 bg-[#0D99FF] text-white text-2xl font-bold rounded-[59px] hover:bg-[#429fe1]"
+              onClick={sendMessage}
             >Send</button>
           </div>
         </div>
