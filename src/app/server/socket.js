@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
     });
     let newId = `Anonymous${user.length}`
     user.push(newId)
-    io.emit('id', `${newId}`);
+    io.to(socket.id).emit('id', `${newId}`);
 
     socket.on('send-message', (msg) => {
         io.emit('send-message', msg);
