@@ -8,18 +8,23 @@ let socket
 export default function Home() {
   const [send, setSend] = useState("");
   const [msg, setMsg] = useState([]);
+  const [id, setId] = useState("");
 
   const sendMessage = (e) => {
     e.preventDefault();
-    socket.emit('send-message', send);
+    socket.emit('send-message', [id, send]);
     setSend("");
   }
   //add user with date conect and random numeber or assig id
   useEffect(() => {
-    socket = io('http://192.168.1.33:5000/');
+    socket = io('http://localhost:5000/');
 
     socket.on('send-message', (message) => {
       setMsg(p1 => [...p1, message]);
+    });
+
+    socket.on('id', (id) => {
+      setId(id);
     });
 
     return () => {
@@ -35,7 +40,7 @@ export default function Home() {
           <div className="bg-[#3F3F3F] h-full">
             {msg.map((message, index) => {
               return (
-                <Recived msg={message} key={index} />
+                message[0] == id ? <Send msg={message[1]} key={index} /> : <Recived msg={message[1]} key={index} />
               )
             })}
           </div>

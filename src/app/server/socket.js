@@ -1,7 +1,7 @@
 const http = require('http');
 const { Server } = require('socket.io');
-
 const httpServer = http.createServer();
+let user = []
 
 const io = new Server(httpServer, {
     cors: {
@@ -15,7 +15,9 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
-
+    let newId = `Anonymous${user.length}`
+    user.push(newId)
+    io.emit('id', `${newId}`);
 
     socket.on('send-message', (msg) => {
         io.emit('send-message', msg);
