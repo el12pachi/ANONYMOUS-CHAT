@@ -3,21 +3,33 @@
 import { useState, useEffect } from "react";
 import { Recived, Send } from "./msg.js"
 import io from 'socket.io-client';
+import Alert from './alert.js'
 let socket
 
 export default function Home() {
   const [send, setSend] = useState("");
   const [msg, setMsg] = useState([]);
   const [id, setId] = useState("");
+  const [alert, setAlert] = useState([]);
 
   const sendMessage = (e) => {
     e.preventDefault();
     socket.emit('send-message', [id, send]);
     setSend("");
   }
+
+  //fix alert
+  const createAlert = (message) => {
+    setAlert(p1 => [...p1, message]);
+    setTimeout(() => {
+      setAlert(p1 => [p1.slice(1)]);
+    }, 2000);
+  }
+
   //que se ejecute una vez y resposive con el padding de la pantalla, crearr mensaje se a unido ...
+
   useEffect(() => {
-    socket = io('http://88.5.18.191:5000/');
+    socket = io('http://localhost:5000/');
 
     socket.on('send-message', (message) => {
       setMsg(p1 => [...p1, message]);
@@ -34,6 +46,13 @@ export default function Home() {
 
   return (
     <>
+      <div className="absolute p-2 z-10 w-64">
+        {alert.map((message, index) => {
+          return (
+            <Alert msg={message} key={index} />
+          )
+        })}
+      </div>
       <div className="h-screen w-screen bg-[#333333] flex items-center justify-center">
         <form onSubmit={sendMessage}>
           <div className="bg-[#3F3F3F] w-screen max-w-[900px] h-screen max-h-[700px] rounded-[50px] flex justify-end flex-col overflow-hidden relative">

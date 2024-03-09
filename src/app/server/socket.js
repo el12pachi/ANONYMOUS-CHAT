@@ -11,13 +11,15 @@ const io = new Server(httpServer, {
 })
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        let oldUser = user.filter((user) => user[0] !== socket.id)
+        console.log(`${oldUser[0]} se ha desconectado`);
     });
     let newId = `Anonymous${user.length}`
-    user.push(newId)
+    user.push([socket.id,newId])
     io.to(socket.id).emit('id', `${newId}`);
+    console.log(newId);
+
 
     socket.on('send-message', (msg) => {
         io.emit('send-message', msg);
