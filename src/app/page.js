@@ -18,15 +18,12 @@ export default function Home() {
     setSend("");
   }
 
-  //fix alert
   const createAlert = (message) => {
     setAlert(p1 => [...p1, message]);
     setTimeout(() => {
       setAlert(p1 => [p1.slice(1)]);
     }, 5000);
   }
-
-  //que se ejecute una vez y resposive con el padding de la pantalla, crearr mensaje se a unido ...
 
   useEffect(() => {
     socket = io('http://88.5.18.191:5000/');
@@ -50,7 +47,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="absolute p-2 z-10 w-64">
+      <div className="absolute flex flex-col gap-2 p-2 z-10 w-64">
         {alert.map((message, index) => {
           return (
             <Alert msg={message} key={index} />

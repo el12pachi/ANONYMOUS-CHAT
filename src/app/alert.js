@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 
 export default function alert({ msg }) {
-    var type = "damage";
+    var type = "";
 
     if (!msg.length) {
         return (<></>)
