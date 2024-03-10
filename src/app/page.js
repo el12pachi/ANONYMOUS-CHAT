@@ -23,13 +23,13 @@ export default function Home() {
     setAlert(p1 => [...p1, message]);
     setTimeout(() => {
       setAlert(p1 => [p1.slice(1)]);
-    }, 2000);
+    }, 5000);
   }
 
   //que se ejecute una vez y resposive con el padding de la pantalla, crearr mensaje se a unido ...
 
   useEffect(() => {
-    socket = io('http://localhost:5000/');
+    socket = io('http://88.5.18.191:5000/');
 
     socket.on('send-message', (message) => {
       setMsg(p1 => [...p1, message]);
@@ -38,6 +38,10 @@ export default function Home() {
     socket.on('id', (id) => {
       setId(id);
     });
+
+    socket.on('joinUser', (message) => {
+      createAlert(`${message}`);
+    })
 
     return () => {
       socket.off();

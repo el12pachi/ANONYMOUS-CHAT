@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 
 
 export default function alert({ msg }) {
+    var type = "damage";
 
-    return (
-        <>
-            <div className="bg-[#0D99FF] p-5 rounded-xl">
-                {msg}
-            </div>
-        </>
-    )
+    if (!msg.length) {
+        return (<></>)
+    } else {
+        return (
+            <>
+                <div className={`p-5 rounded-xl ${type=='damage'?'bg-[#d53d3d]':'bg-[#37bd42]'}`}>
+                    {msg}
+                </div>
+            </>
+        )
+    }
 }
