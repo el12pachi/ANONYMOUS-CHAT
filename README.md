@@ -16,7 +16,8 @@ This project is an anonymous chat application developed with Next.js and Socket.
 - **React.js:** JavaScript library for building user interfaces.
 - **Socket.IO:** JavaScript library for real-time web applications. Enables bidirectional communication in real-time between web clients and servers.
 - **CSS:** CSS styles are used to design the chat interface and ensure an attractive user experience.
-- **HTML5:** HTML5 is used for the structure and semantic markup of the web application.
+- **Tailwind:** Tailwind styles are used to design the chat interface and ensure an attractive user experience.
+- **JSX:** JSX is used for the structure and semantic markup of the web application.
 
 ## Installation
 
@@ -34,12 +35,11 @@ This project is an anonymous chat application developed with Next.js and Socket.
   npm install
 ```
 
-Usage
+## Usage
+
 1.Start the application:
 ```bash
 npm run dev
 ```
-
 2.Open your browser and go to [http://localhost:3000](http://localhost:3000).
-
 3.Enjoy the anonymous chat!
