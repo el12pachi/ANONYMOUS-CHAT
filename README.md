@@ -28,7 +28,7 @@ This project is an anonymous chat application developed with Next.js and Socket.
 ```
 2. Navigate to the project directory:
 ```bash
-  cd chat-anonymous-nextjs
+  cd ANONYMOUS-CHAT
 ```
 3.Install the dependencies:
    ```bash
