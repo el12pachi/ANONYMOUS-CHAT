@@ -24,7 +24,7 @@ This project is an anonymous chat application developed with Next.js and Socket.
 1. Clone this repository to your local machine:
 
 ```bash
-   git clone https://github.com/your-username/chat-anonymous-nextjs.git
+   git clone https://github.com/el12pachi/ANONYMOUS-CHAT
 ```
 2. Navigate to the project directory:
 ```bash
@@ -43,3 +43,7 @@ npm run dev
 ```
 2.Open your browser and go to [http://localhost:3000](http://localhost:3000).
 3.Enjoy the anonymous chat!
+
+## Credits
+
+This project was developed by [El12pachi](https://github.com/el12pachi).
