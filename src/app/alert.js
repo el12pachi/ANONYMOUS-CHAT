@@ -1,8 +1,3 @@
-"use client"
-
-import React, { useState } from 'react';
-
-
 export default function alert({ msg }) {
     var type = "";
 
@@ -11,7 +6,7 @@ export default function alert({ msg }) {
     } else {
         return (
             <>
-                <div className={`p-5 rounded-xl ${type=='damage'?'bg-[#d53d3d]':'bg-[#37bd42]'}`}>
+                <div className={`p-5 rounded-xl bg-[#0D99FF]`}>
                     {msg}
                 </div>
             </>

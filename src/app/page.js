@@ -26,7 +26,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    socket = io('http://88.5.18.191:5000/');
+    socket = io('http://localhost:5000/');
 
     socket.on('send-message', (message) => {
       setMsg(p1 => [...p1, message]);
@@ -55,8 +55,8 @@ export default function Home() {
         })}
       </div>
       <div className="h-screen w-screen bg-[#333333] flex items-center justify-center">
-        <form onSubmit={sendMessage}>
-          <div className="bg-[#3F3F3F] w-screen max-w-[900px] h-screen max-h-[700px] rounded-[50px] flex justify-end flex-col overflow-hidden relative">
+        <form onSubmit={sendMessage} className="w-full h-full p-0 sm:p-6 flex items-center justify-center">
+          <div className="bg-[#3F3F3F] w-full max-w-[900px] h-full max-h-[700px] rounded-[50px] flex justify-end flex-col overflow-hidden relative">
             <div className="w-full h-24 bg-[#0D99FF] flex justify-center items-center text-3xl text-white font-bold sm:text-5xl">CHAT ANONYMOUS</div>
             <div className="bg-[#3F3F3F] h-full overflow-y-scroll pb-16">
               {msg.map((message, index) => {
