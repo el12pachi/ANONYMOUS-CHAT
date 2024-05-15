@@ -58,7 +58,7 @@ export default function Home() {
         <form onSubmit={sendMessage} className="w-full h-full p-0 sm:p-6 flex items-center justify-center">
           <div className="bg-[#3F3F3F] w-full max-w-[900px] h-full max-h-[700px] rounded-[50px] flex justify-end flex-col overflow-hidden relative">
             <div className="w-full h-24 bg-[#0D99FF] flex justify-center items-center text-3xl text-white font-bold sm:text-5xl">CHAT ANONYMOUS</div>
-            <div className="bg-[#3F3F3F] h-full flex flex-col justify-end overflow-y-scroll pb-16">
+            <div className="bg-[#3F3F3F] h-full flex flex-col justify-end overflow-y-auto pb-16">
               {msg.map((message, index) => {
                 return (
                   message[0] == id ? <Send msg={message[1]} key={index} /> : <Recived msg={message[1]} key={index} />
