@@ -30,7 +30,7 @@ export default function Home() {
     msgEnd.current.scrollIntoView({ behavior: 'smooth' });
   }, [msg]);
   useEffect(() => {
-    socket = io('http://localhost:5000/');
+    socket = io('http://10.10.14.169:5000/');
 
     socket.on('send-message', (message) => {
       setMsg(p1 => [...p1, message]);

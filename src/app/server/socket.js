@@ -32,5 +32,5 @@ httpServer.listen(5000, () => {
 });
 
 
-//node \app\server\socket.js
+//node C:\Users\el12p\Desktop\ANONYMOUS-CHAT\app\server\socket.js
 //npm run dev
